@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>3D Space Suit Showcase</title>
+
+    <!-- Google Model Viewer -->
+    <script type="module"
+        src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js">
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">SPACE<span>LAB</span></div>
+
+        <div class="badge">
+            INTERACTIVE 3D
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- LEFT SIDE -->
+        <section class="intro">
+
+            <p class="small-title">
+                NEXT GENERATION EQUIPMENT
+            </p>
+
+            <h1>
+                Explore the<br>
+                <span>Space Suit</span>
+            </h1>
+
+            <p class="description">
+                Explore our futuristic astronaut suit in 3D.
+                Rotate, zoom and discover its features.
+            </p>
+
+            <button id="detailsButton">
+                VIEW DETAILS
+            </button>
+
+        </section>
+
+
+        <!-- RIGHT SIDE -->
+        <section class="viewer-container">
+
+            <div class="viewer-glow"></div>
+
+            <model-viewer
+                id="model"
+                src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+                alt="3D astronaut model"
+                camera-controls
+                auto-rotate
+                shadow-intensity="1"
+                exposure="1"
+                touch-action="pan-y">
+
+                <!-- INFORMATION POINT 1 -->
+                <button
+                    class="hotspot"
+                    slot="hotspot-1"
+                    data-position="0m 1.4m 0.2m"
+                    data-normal="0m 1m 0m"
+                    onclick="showInfo('Helmet')">
+
+                    +
+                </button>
+
+
+                <!-- INFORMATION POINT 2 -->
+                <button
+                    class="hotspot"
+                    slot="hotspot-2"
+                    data-position="0.3m 0.4m 0.2m"
+                    data-normal="0m 1m 0m"
+                    onclick="showInfo('Life Support')">
+
+                    +
+                </button>
+
+            </model-viewer>
+
+
+            <!-- INFO BOX -->
+            <div id="infoBox" class="info-box">
+
+                <button
+                    class="close"
+                    onclick="closeInfo()">
+                    ×
+                </button>
+
+                <h2 id="infoTitle">
+                    Helmet
+                </h2>
+
+                <p id="infoText">
+                    Advanced protective helmet designed
+                    for astronaut safety.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- DETAILS SECTION -->
+
+    <section id="details" class="details">
+
+        <h2>Designed for Exploration</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">◉</div>
+                <h3>Protection</h3>
+                <p>
+                    Designed to protect astronauts
+                    in extreme environments.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">✦</div>
+                <h3>Technology</h3>
+                <p>
+                    Advanced equipment for
+                    long-duration missions.
+                </p>
+            </div>
+
+            <div class="card">
+                <div class="icon">↗</div>
+                <h3>Mobility</h3>
+                <p>
+                    Flexible design allows astronauts
+                    to move efficiently.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        Interactive 3D Product Showcase • SpaceLab
+    </footer>
+
+
+    <script>
+
+        // DETAILS BUTTON
+
+        document
+            .getElementById("detailsButton")
+            .addEventListener("click", function () {
+
+                document
+                    .getElementById("details")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            });
+
+
+        // INFORMATION POINTS
+
+        function showInfo(type) {
+
+            const title =
+                document.getElementById("infoTitle");
+
+            const text =
+                document.getElementById("infoText");
+
+            const box =
+                document.getElementById("infoBox");
+
+
+            if (type === "Helmet") {
+
+                title.innerText = "Helmet";
+
+                text.innerText =
+                    "Advanced protective helmet designed for astronaut safety.";
+
+            }
+
+            else if (type === "Life Support") {
+
+                title.innerText = "Life Support";
+
+                text.innerText =
+                    "The life-support system helps provide essential conditions for the astronaut.";
+
+            }
+
+
+            box.classList.add("show");
+
+        }
+
+
+        // CLOSE INFORMATION BOX
+
+        function closeInfo() {
+
+            document
+                .getElementById("infoBox")
+                .classList.remove("show");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
